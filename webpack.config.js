@@ -3,6 +3,11 @@ const HtmlWebpackPlugin= require('html-webpack-plugin');
 module.exports = {
     entry: './src/index.js',
 
+    node: {
+        child_process: "empty",
+        fs: "empty", // if unable to resolve "fs"
+    },
+
     output: {
         path: path.join(__dirname,"/dist"),
         filename: "index_bundle.js",
@@ -35,6 +40,10 @@ module.exports = {
         })
     ],
     resolve: {
+        modules: [
+            path.resolve('./client'),
+            'node_modules'
+          ],
         extensions: ['.js', '.jsx'],
     }
 };
